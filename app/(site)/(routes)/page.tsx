@@ -1,9 +1,14 @@
-// //app/page.tsx
-import { UserButton } from "@clerk/nextjs";
-const Home = () => {
+import prisma from "@/lib/prismadb";
+
+import Categories from "@/components/Categories";
+import SearchInput from "@/components/SearchInput";
+
+const Home = async () => {
+    const categories = await prisma.category.findMany();
     return (
-        <div>
-            <UserButton afterSignOutUrl="/" />
+        <div className="h-full p-4 space-y-2">
+            <SearchInput />
+            <Categories data={categories} />
         </div>
     );
 };
