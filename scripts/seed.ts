@@ -1,6 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 
-const db: typeof PrismaClient = new PrismaClient();
+const db = new PrismaClient();
 
 async function main() {
     await db.category.deleteMany();

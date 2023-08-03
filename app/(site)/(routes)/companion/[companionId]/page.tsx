@@ -7,7 +7,8 @@ interface IProps {
     };
 }
 
-const CompanionIdPage = async ({ params: { companionId } }: IProps) => {
+const CompanionIdPage = async ({ params }: IProps) => {
+    const { companionId } = params;
     // TODO: check for subscription
 
     const companion = await prisma.companion.findUnique({
