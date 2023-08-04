@@ -13,7 +13,7 @@ export async function POST(req: Request) {
             return new NextResponse("Unauthorized user", { status: 401, statusText: "FAILURE" });
         }
 
-        if (!name || !description || !instructions || !seed || src || !categoryId) {
+        if (!name || !description || !instructions || !seed || !src || !categoryId) {
             return new NextResponse("Missing required fields", { status: 400, statusText: "FAILURE" });
         }
 

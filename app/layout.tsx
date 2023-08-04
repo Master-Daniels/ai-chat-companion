@@ -20,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <ClerkProvider>
             <html lang="en" suppressHydrationWarning>
+                <link rel="icon" href="/favicon.ico" sizes="any" />
                 <body className={cn("bg-secondary/50", inter.className)}>
                     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                         {children}

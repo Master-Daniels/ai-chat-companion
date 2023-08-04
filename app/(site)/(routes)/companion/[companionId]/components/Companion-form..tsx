@@ -87,19 +87,18 @@ const CompanionForm = ({ initialData, categories }: IProps) => {
                 await fetch("/api/companion", {
                     method: "POST",
                     body: JSON.stringify(values),
-                })
-                    .then((response) => response.json())
-                    .then((data) => console.log(data));
+                });
             }
 
             toast({
-                variant: "destructive",
                 description: "Success.",
             });
 
             router.refresh();
             router.push("/");
         } catch (error) {
+            console.log(error);
+
             toast({
                 variant: "destructive",
                 description: "Something went wrong.",
