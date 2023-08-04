@@ -11,11 +11,15 @@ const CompanionIdPage = async ({ params }: IProps) => {
     const { companionId } = params;
     // TODO: check for subscription
 
-    const companion = await prisma.companion.findUnique({
-        where: {
-            id: companionId,
-        },
-    });
+    let companion = null;
+
+    if (companionId !== "new") {
+        companion = await prisma.companion.findUnique({
+            where: {
+                id: companionId,
+            },
+        });
+    }
 
     const categories = await prisma.category.findMany();
 
