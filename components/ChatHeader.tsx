@@ -75,7 +75,10 @@ const ChatHeader = ({ companion }: IProps) => {
                             <Edit className="w-4 h-4 mr-2" />
                             Edit
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={onDelete}>
+                        <DropdownMenuItem
+                            onClick={onDelete}
+                            className="text-red-500 focus:bg-red-900/40 focus:text-red-500"
+                        >
                             <Trash className="w-4 h-4 mr-2" />
                             Delete
                         </DropdownMenuItem>
