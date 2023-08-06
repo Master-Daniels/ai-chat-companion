@@ -43,7 +43,7 @@ const ChatMessages = ({ companion, isLoading, messages }: IProps) => {
                     key={message.content}
                     isLoading={fakeLoading}
                     role={message.role}
-                    src={message.src}
+                    src={companion.src}
                     content={message.content}
                 />
             ))}

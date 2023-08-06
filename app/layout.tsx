@@ -9,6 +9,8 @@ import { ThemeProvider } from "@/components/themeProvider";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 
+import ProModal from "@/components/ProModal";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <link rel="icon" href="/favicon.ico" sizes="any" />
                 <body className={cn("bg-secondary/50", inter.className)}>
                     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                        <ProModal />
                         {children}
                         <Toaster />
                     </ThemeProvider>

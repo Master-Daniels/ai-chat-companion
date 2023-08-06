@@ -30,9 +30,9 @@ const Companions = ({ data }: IProps) => {
                         <CardHeader className="flex items-center justify-center text-center text-muted-foreground">
                             <div className="relative w-32 h-32">
                                 <Image src={item.src} alt="companion" fill className="rounded-xl object-cover" />
-                                <p className="font-bold">{item.name}</p>
-                                <p className="font-xs">{item.description}</p>
                             </div>
+                            <p className="font-bold">{item.name}</p>
+                            <p className="text-xs">{item.description}</p>
                         </CardHeader>
                         <CardFooter className="flex items-between justify-between text-xs text-muted-foreground">
                             <p className="lowercase">@{item.userName}</p>
