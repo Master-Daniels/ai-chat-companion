@@ -29,7 +29,13 @@ const Companions = ({ data }: IProps) => {
                     <Link href={`/chat/${item.id}`}>
                         <CardHeader className="flex items-center justify-center text-center text-muted-foreground">
                             <div className="relative w-32 h-32">
-                                <Image src={item.src} alt="companion" fill className="rounded-xl object-cover" />
+                                <Image
+                                    src={item.src}
+                                    alt="companion"
+                                    fill
+                                    className="rounded-xl object-cover"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                />
                             </div>
                             <p className="font-bold">{item.name}</p>
                             <p className="text-xs">{item.description}</p>

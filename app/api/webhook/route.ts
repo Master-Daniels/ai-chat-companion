@@ -22,14 +22,14 @@ export async function POST(request: Request) {
 
     const session = event.data.object as Stripe.Checkout.Session;
 
-    if (event.type === "cehckout.session.completed") {
+    if (event.type === "checkout.session.completed") {
         const subscription = await stripe.subscriptions.retrieve(session.subscription as string);
 
         if (!session.metadata?.userId) {
             return new NextResponse("User ID is required", { status: 400, statusText: "FAILURE" });
         }
 
-        await prisma.userSubscription.create({
+        const sub = await prisma.userSubscription.create({
             data: {
                 userId: session?.metadata?.userId,
                 stripeSubscriptionId: subscription.id,
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
                 stripeSubscriptionId: subscription.id,
             },
         }));
-        
+
         if (exists)
             await prisma.userSubscription.update({
                 where: {

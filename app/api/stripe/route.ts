@@ -50,9 +50,10 @@ export async function GET(request: Request) {
                 userId,
             },
         });
+
         return new NextResponse(JSON.stringify({ url: stripeSession.url, status: 200, statusText: "SUCCESS" }));
     } catch (error: any) {
-        console.log("[STRIPE_GET]: ", error.message);
+        console.log("[STRIPE_GET]: ", error);
         return new NextResponse("Internal Error", { status: 500, statusText: "FAILURE" });
     }
 }

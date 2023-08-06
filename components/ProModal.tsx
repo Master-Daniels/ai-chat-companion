@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useProModal } from "@/hooks/use-pro-modal";
 
@@ -10,6 +10,11 @@ import { useToast } from "./ui/use-toast";
 
 const ProModal = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, [isMounted]);
 
     const proModal = useProModal();
     const { toast } = useToast();
@@ -18,8 +23,6 @@ const ProModal = () => {
         try {
             setIsLoading(true);
             const res = await (await fetch("/api/stripe")).json();
-            console.log(res);
-
             setIsLoading(false);
             window.location.href = res.url;
         } catch (error) {
@@ -30,6 +33,9 @@ const ProModal = () => {
             });
         }
     };
+
+    if (!isMounted) return null;
+
     return (
         <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
             <DialogContent>
@@ -47,7 +53,7 @@ const ProModal = () => {
                     </p>
                     <Button
                         variant="premium"
-                        className="hover:ring-2 ring-white transition-all duration-1000"
+                        className="hover:ring-2 ring-white transition-all duration-1000 disabled:cursor-not-allowed"
                         disabled={isLoading}
                         onClick={onSubscribe}
                     >

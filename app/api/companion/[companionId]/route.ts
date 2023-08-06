@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 
 import { auth, currentUser } from "@clerk/nextjs";
 import prisma from "@/lib/prismadb";
+import { checkSubscription } from "@/lib/subscription";
 
 export async function PATCH(req: Request, { params: { companionId } }: { params: { companionId: string } }) {
+    const isPro = checkSubscription();
     try {
         const { name, description, instructions, seed, src, categoryId } = await req.json();
 
@@ -21,7 +23,11 @@ export async function PATCH(req: Request, { params: { companionId } }: { params:
             return new NextResponse("Missing required fields", { status: 400, statusText: "FAILURE" });
         }
 
-        // TODO: check for subscription
+        if (!isPro)
+            return new NextResponse("You need to subscribe to create a companion", {
+                status: 403,
+                statusText: "FAILURE",
+            });
 
         const companion = await prisma.companion.update({
             where: {

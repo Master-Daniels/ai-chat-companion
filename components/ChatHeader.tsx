@@ -36,8 +36,6 @@ const ChatHeader = ({ companion }: IProps) => {
             router.refresh();
             router.push("/");
         } catch (error: any) {
-            console.log(error.message);
-
             toast({
                 description: "Something went wrong!",
                 variant: "destructive",
