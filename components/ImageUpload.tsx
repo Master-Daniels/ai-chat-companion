@@ -30,7 +30,7 @@ const ImageUpload = ({ value, onChange, disabled }: IProps) => {
                 <div className="p-4 border-4 border-dashed border-primary/10 rounded-lg opacity-75 hover:opacity-100 transition-all flex flex-col space-y-2 items-center justify-center">
                     <div className="relative h-44 w-44 ">
                         <Image
-                            src={value || "/../public/img/placeholder-image.png"}
+                            src={value || "/img/placeholder-image.png"}
                             alt="Upload"
                             className="object-cover rounded-lg"
                             fill
