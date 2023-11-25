@@ -16,9 +16,7 @@ const Home = async ({ searchParams }: IProps) => {
     const data = await prisma.companion.findMany({
         where: {
             id: searchParams.categoryId,
-            name: {
-                search: searchParams.name,
-            },
+            name: searchParams.name,
         },
         orderBy: {
             createdAt: "desc",
