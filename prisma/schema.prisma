@@ -7,32 +7,32 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
+  provider     = "mongodb"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 model Category {
-  id        String      @id @default(uuid())
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   Companion Companion[]
 }
 
 model Companion {
-  id           String @id @default(uuid())
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
   userId       String
   userName     String
   src          String
-  name         String @db.Text
+  name         String @db.String
   description  String
-  instructions String @db.Text
-  seed         String @db.Text
+  instructions String @db.String
+  seed         String @db.String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   category   Category @relation(fields: [categoryId], references: [id])
-  categoryId String
+  categoryId String @db.ObjectId
 
   messages Message[]
 
@@ -46,9 +46,9 @@ enum ROLE {
 }
 
 model Message {
-  id      String @id @default(uuid())
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   role    ROLE   @default(USER)
-  content String @db.Text
+  content String @db.String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -56,13 +56,13 @@ model Message {
   userId String
 
   companion   Companion @relation(fields: [companionId], references: [id], onDelete: Cascade)
-  companionId String
+  companionId String @db.ObjectId
 
   @@index([companionId])
 }
 
 model UserSubscription {
-  id                     String    @id @default(uuid())
+  id                     String    @id @default(auto()) @map("_id") @db.ObjectId
   userId                 String    @unique
   stripeCustomerId       String?   @unique @map("stripe_cutomer_id")
   stripeSubscriptionId   String?   @unique @map("stripe_subscription_id")
